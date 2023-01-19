@@ -5,6 +5,8 @@ name = "pypi"
 
 [packages]
 python-decouple = "*"
+gunicorn = "*"
+whitenoise = "*"
 
 [dev-packages]
 
