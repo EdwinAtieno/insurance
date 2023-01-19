@@ -1,1 +1,2 @@
-web: gunicorn huduma_insuranc --log-file -
+release: python manage.py migrate
+web: gunicorn huduma_insuranc.wsgi --log-file -
