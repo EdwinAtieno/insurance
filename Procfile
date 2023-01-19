@@ -1,0 +1,1 @@
+web: gunicorn huduma_insuranc --log-file -
