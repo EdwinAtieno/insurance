@@ -36,29 +36,24 @@ class Customer(IntegerIDModel, TimeStampedModel):
     id_number = models.CharField(
         max_length=255, verbose_name=_("ID Number"), null=True, unique=True
     )
-
-    def __str__(self) -> str:
-        return self.first_name
-
-class Kin(IntegerIDModel, TimeStampedModel):
-    customer = models.ForeignKey( Customer, on_delete=models.PROTECT)
-    first_name = models.CharField(max_length=255)
-    last_name = models.CharField(max_length=255)
-    phone_number = models.CharField(
+    kin_first_name = models.CharField(max_length=255)
+    kin_last_name = models.CharField(max_length=255)
+    kin_phone_number = models.CharField(
         max_length=20,
-        verbose_name=_("Phone Number"),
         unique=True,
+        verbose_name=_("Phone Number"),
         validators=[
             phone_number_validator,
         ],
     )
-    id_number = models.CharField(
-        max_length=255, verbose_name=_("ID Number"), null=True, unique=True
+    kin_id_number = models.IntegerField(
+        verbose_name=_("ID Number"), null=True, unique=True
     )
-    relationship = models.CharField(max_length=255)
+    kin_relationship = models.CharField(max_length=255)
 
     def __str__(self) -> str:
         return self.first_name
+
 
 class Insurance(IntegerIDModel, TimeStampedModel):
     product_issued = models.ForeignKey(Product, on_delete=models.PROTECT)

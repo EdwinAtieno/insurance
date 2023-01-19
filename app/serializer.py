@@ -106,11 +106,12 @@ class CustomerSerializer(serializers.ModelSerializer):
 
 class InsuranceSerializer(serializers.ModelSerializer):
     product_issued = serializers.SlugRelatedField(
-        queryset=Product.objects.all(), slug_field="product_name"
+        queryset=Product.objects.all(), slug_field="product_name",
     )
     customer = serializers.SlugRelatedField(
-        queryset=Customer.objects.all(), slug_field="id_number"
+        queryset=Customer.objects.all(), slug_field="first_name",
     )
+    insurance_price = serializers.FloatField(source="product_issued.product_price")
     policy_number = serializers.CharField(max_length=255)
 
     class Meta:
@@ -120,4 +121,5 @@ class InsuranceSerializer(serializers.ModelSerializer):
             "product_issued",
             "customer",
             "policy_number",
+            "insurance_price",
         )
